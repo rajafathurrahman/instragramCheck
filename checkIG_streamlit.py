@@ -80,8 +80,8 @@ from io import StringIO
 #     st.warning("Please enter your username and password")
 
 # if authentication_status:
-st.title("# Welcome to the Instagram username checker 👋")
-st.markdown(""" ####"Order akun FB dan IG disini "Linknya: https://akunfb.id""")
+st.title("Welcome to the Instagram username checker by ")
+st.markdown(""" ####"Order akun FB dan IG disini "Linknya: https://akunfb.id <img src="https://akunfb.id/wp-content/uploads/2023/07/Logo2.png" alt="Akun Facebook Id"> """)
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
