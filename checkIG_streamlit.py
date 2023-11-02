@@ -81,7 +81,7 @@ from io import StringIO
 
 # if authentication_status:
 st.title("Welcome to the Instagram username checker by ")
-st.markdown("""![Alt text](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")""")
+st.markdown("""![Alt text](https://akunfb.id/wp-content/uploads/2023/07/Logo2.png "a title")""")
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
