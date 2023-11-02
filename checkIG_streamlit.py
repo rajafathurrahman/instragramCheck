@@ -101,7 +101,7 @@ centered_headline_with_link = """
 st.markdown(centered_headline_with_link, unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader("Bulk Checker")
-if uploaded_file is not None:s
+if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     string_data = stringio.read()
