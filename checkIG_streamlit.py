@@ -93,8 +93,8 @@ with col3:
 st.markdown("<h2 style='text-align: center; color: black;'>Instagram LIVE Checker </h2>", unsafe_allow_html=True)
 
 centered_headline_with_link = """
-<h3 style="text-align: center; color: grey;"> Order akun FB dan IG Account :
-    <a href="https://akunfb.id/">Big headline</a>
+<h3 style="text-align: center; color: black;"> Order FB & IG Account :
+    <a href="https://akunfb.id/">akunfb.id</a>
 </h3>
 """
 
