@@ -81,6 +81,15 @@ from io import StringIO
 
 # if authentication_status:
 st.markdown("""![Alt text](https://akunfb.id/wp-content/uploads/2023/07/Logo2.png "a title")""")
+title_alignment=
+"""
+<style>
+#Instagram LIVE Cheker {
+  text-align: center
+}
+</style>
+"""
+st.markdown(title_alignment, unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
