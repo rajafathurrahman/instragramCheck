@@ -100,7 +100,7 @@ centered_headline_with_link = """
 
 st.markdown(centered_headline_with_link, unsafe_allow_html=True)
 
-uploaded_file = st.file_uploader("Choose a file")
+uploaded_file = st.file_uploader("Bulk Checker")
 if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
@@ -111,10 +111,10 @@ if uploaded_file is not None:
 else:
     st.session_state['usernamelabel'] = False
 
-username = st.text_area('Username','', height=100, disabled=st.session_state['usernamelabel'])
+username = st.text_area('Input IG Username','', height=100, disabled=st.session_state['usernamelabel'])
 
 genre = st.radio(
-    "search method",
+    "Check Method",
     ["file", "manual"])
 
 but = st.button('Check IG')
