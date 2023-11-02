@@ -1,6 +1,9 @@
 import requests
 import streamlit as st
 import pandas as pd
+import pickle
+from pathlib import Path
+import streamlit_authenticator as stauth
 
 url = "https://www.instagram.com/api/graphql"
 headers = {
@@ -57,61 +60,81 @@ def getdataframe(datausername):
 
 from io import StringIO
 
-uploaded_file = st.file_uploader("Choose a file")
-if uploaded_file is not None:
-    bytes_data = uploaded_file.getvalue()
-    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-    string_data = stringio.read()
-    dataframe = pd.read_csv(uploaded_file)
-    datafromcsv = dataframe['username'].tolist()
-    st.session_state['usernamelabel'] = True
-else:
-    st.session_state['usernamelabel'] = False
+## Authentication
+names = ["admin", "raja"]
+usernames = ["admin", "raja"]
 
-username = st.text_area('Username','', height=100, disabled=st.session_state['usernamelabel'])
+# load hashed passwords
+file_path = Path(__file__).parent / "hashed_pw.pkl"
+with file_path.open("rb") as file:
+    hashed_passwords = pickle.load(file)
 
-genre = st.radio(
-    "search method",
-    ["file", "manual"])
+authenticator = stauth.Authenticate(names, usernames, hashed_passwords,"sales_dashboard", "abcdef", cookie_expiry_days=30)
 
-but = st.button('Check IG')
+name, authentication_status, username = authenticator.login("Login", "main")
 
+if authentication_status == False:
+    st.error("Username/password is incorrect")
 
-if but:
-    if genre == 'manual':
-        if username != '' :
-            datausername = username.split('\n')
-            dff = getdataframe(datausername)
-            st.write('Active')
-            st.write(dff[dff['status']=='active'].reset_index(drop=True))
+if authentication_status == None:
+    st.warning("Please enter your username and password")
 
-            st.write('Not Active')
-            st.write(dff[dff['status']=='notactive'].reset_index(drop=True))
-            
-            csv = convert_df(dff)
-            st.download_button(
-                label="Download data as CSV",
-                data=csv,
-                file_name='resultCheckIG.csv',
-                mime='text/csv',
-            )
-        else:
-            st.warning('Please Input username')
+if authentication_status:
+    uploaded_file = st.file_uploader("Choose a file")
+    if uploaded_file is not None:
+        bytes_data = uploaded_file.getvalue()
+        stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+        string_data = stringio.read()
+        dataframe = pd.read_csv(uploaded_file)
+        datafromcsv = dataframe['username'].tolist()
+        st.session_state['usernamelabel'] = True
     else:
-        if uploaded_file is not None:
-            dff = getdataframe(datafromcsv)
-            st.write('Active')
-            st.write(dff[dff['status']=='active'].reset_index(drop=True))
+        st.session_state['usernamelabel'] = False
 
-            st.write('Not Active')
-            st.write(dff[dff['status']=='notactive'].reset_index(drop=True))
+    username = st.text_area('Username','', height=100, disabled=st.session_state['usernamelabel'])
 
-            csv = convert_df(dff)
-            st.download_button(
-                label="Download data as CSV",
-                data=csv,
-                file_name='resultCheckIG.csv',
-                mime='text/csv',
-            )
+    genre = st.radio(
+        "search method",
+        ["file", "manual"])
+
+    but = st.button('Check IG')
+
+
+    if but:
+        if genre == 'manual':
+            if username != '' :
+                datausername = username.split('\n')
+                dff = getdataframe(datausername)
+                st.write('Active')
+                st.write(dff[dff['status']=='active'].reset_index(drop=True))
+
+                st.write('Not Active')
+                st.write(dff[dff['status']=='notactive'].reset_index(drop=True))
+                
+                csv = convert_df(dff)
+                st.download_button(
+                    label="Download data as CSV",
+                    data=csv,
+                    file_name='resultCheckIG.csv',
+                    mime='text/csv',
+                )
+            else:
+                st.warning('Please Input username')
         else:
-            st.warning('upload file first')
+            if uploaded_file is not None:
+                dff = getdataframe(datafromcsv)
+                st.write('Active')
+                st.write(dff[dff['status']=='active'].reset_index(drop=True))
+
+                st.write('Not Active')
+                st.write(dff[dff['status']=='notactive'].reset_index(drop=True))
+
+                csv = convert_df(dff)
+                st.download_button(
+                    label="Download data as CSV",
+                    data=csv,
+                    file_name='resultCheckIG.csv',
+                    mime='text/csv',
+                )
+            else:
+                st.warning('upload file first')
