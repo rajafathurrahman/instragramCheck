@@ -80,9 +80,16 @@ from io import StringIO
 #     st.warning("Please enter your username and password")
 
 # if authentication_status:
-st.markdown("""<div style="display: flex; justify-content: center;">
-    <img src="https://akunfb.id/wp-content/uploads/2023/07/Logo2.png" alt="Akun Facebook Id" style="max-width: 100%;">
-</div>""")
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.write(' ')
+
+with col2:
+    st.image("https://akunfb.id/wp-content/uploads/2023/07/Logo2.png")
+
+with col3:
+    st.write(' ')
 st.markdown("<h2 style='text-align: center; color: black;'>Instagram LIVE Checker </h2>", unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader("Choose a file")
