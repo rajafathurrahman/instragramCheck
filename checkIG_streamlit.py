@@ -90,7 +90,7 @@ with col2:
 
 with col3:
     st.write(' ')
-st.markdown("<h2 style='text-align: center; color: black;'>Instagram LIVE Checker </h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: black;'>Instagram LIVE Checker </h2>")
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
