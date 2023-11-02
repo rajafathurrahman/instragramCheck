@@ -80,10 +80,9 @@ from io import StringIO
 #     st.warning("Please enter your username and password")
 
 # if authentication_status:
-st.markdown("""Apa bebas dimana sj paling sy rekuest dikasih kotak/tombol disitu yg di arahkan ke page saya bisa y mas.
+st.title("# Welcome to the Instagram username checker 👋")
+st.markdown(""" ####"Order akun FB dan IG disini "Linknya: https://akunfb.id""")
 
-"Order akun FB dan IG disini"
-Linknya: https://akunfb.id""")
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()
