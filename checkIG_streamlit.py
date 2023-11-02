@@ -90,7 +90,15 @@ with col2:
 
 with col3:
     st.write(' ')
-st.markdown("<h2 style='text-align: center; color: black;'>Instagram LIVE Checker </h2>")
+st.markdown("<h2 style='text-align: center; color: black;'>Instagram LIVE Checker </h2>", unsafe_allow_html=True)
+
+centered_headline_with_link = """
+<h1 style="text-align: center; color: grey;">
+    <a href="https://akunfb.id/">Big headline</a>
+</h1>
+"""
+
+st.markdown(centered_headline_with_link, unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
