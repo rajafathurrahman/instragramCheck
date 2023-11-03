@@ -1,9 +1,7 @@
 import requests
 import streamlit as st
 import pandas as pd
-# import pickle
-# from pathlib import Path
-# import streamlit_authenticator as stauth
+from io import StringIO
 
 url = "https://www.instagram.com/api/graphql"
 headers = {
@@ -55,31 +53,10 @@ def getdataframe(datausername):
             datadf.append([datausername[i],'Null','notactive'])
     
         dff = pd.DataFrame(datadf, columns=['username','ID', 'status'])
+        dff_clean = dff.drop_duplicates(subset=['username'])
 
-    return dff
+    return dff_clean
 
-from io import StringIO
-
-# ## Authentication
-# names = ["admin", "raja"]
-# usernames = ["admin", "raja"]
-
-# # load hashed passwords
-# file_path = Path(__file__).parent / "hashed_pw.pkl"
-# with file_path.open("rb") as file:
-#     hashed_passwords = pickle.load(file)
-
-# authenticator = stauth.Authenticate(names, usernames, hashed_passwords,"sales_dashboard", "abcdef", cookie_expiry_days=30)
-
-# name, authentication_status, username = authenticator.login("Login", "main")
-
-# if authentication_status == False:
-#     st.error("Username/password is incorrect")
-
-# if authentication_status == None:
-#     st.warning("Please enter your username and password")
-
-# if authentication_status:
 col1, col2, col3 = st.columns(3)
 
 with col1:
