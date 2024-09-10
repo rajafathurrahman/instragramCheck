@@ -26,7 +26,8 @@ headers = {
   'x-csrftoken': 'F1jFG6_FagqAZuBZAqwKvK',
   'x-ig-app-id': '936619743392459',
   'x-ig-www-claim': '0',
-  'x-requested-with': 'XMLHttpRequest'}
+  'x-requested-with': 'XMLHttpRequest'
+}
 
 def checkusername(username):
     url = f"https://www.instagram.com/api/v1/users/web_profile_info/?username={username}"
