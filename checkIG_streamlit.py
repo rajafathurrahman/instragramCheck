@@ -3,18 +3,16 @@ import streamlit as st
 import pandas as pd
 from io import StringIO
 
-url = "https://www.instagram.com/api/graphql"
 headers = {
-  'authority': 'www.instagram.com',
   'accept': '*/*',
-  'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-  'content-type': 'application/x-www-form-urlencoded',
-  'dpr': '1',
-  'origin': 'https://www.instagram.com',
-  'referer': 'https://www.instagram.com/rajarahman/',
+  'accept-language': 'id-ID,id;q=0.9',
+  'cache-control': 'no-cache',
+  'pragma': 'no-cache',
+  'priority': 'u=1, i',
+  'referer': 'https://www.instagram.com/rajarahman17/',
   'sec-ch-prefers-color-scheme': 'light',
-  'sec-ch-ua': '"Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"',
-  'sec-ch-ua-full-version-list': '"Chromium";v="118.0.5993.118", "Google Chrome";v="118.0.5993.118", "Not=A?Brand";v="99.0.0.0"',
+  'sec-ch-ua': '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+  'sec-ch-ua-full-version-list': '"Chromium";v="128.0.6613.120", "Not;A=Brand";v="24.0.0.0", "Google Chrome";v="128.0.6613.120"',
   'sec-ch-ua-mobile': '?0',
   'sec-ch-ua-model': '""',
   'sec-ch-ua-platform': '"Windows"',
@@ -22,18 +20,16 @@ headers = {
   'sec-fetch-dest': 'empty',
   'sec-fetch-mode': 'cors',
   'sec-fetch-site': 'same-origin',
-  'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-  'viewport-width': '1286',
+  'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
   'x-asbd-id': '129477',
-  'x-csrftoken': 'iwyKNIZjMSH8obU4PHB1tRyN1rPF12no',
-  'x-fb-friendly-name': 'PolarisBarcelonaProfileBadgeQuery',
-  'x-fb-lsd': 'AVpbluxH90g',
-  'x-ig-app-id': '936619743392459'
-}
+  'x-csrftoken': 'F1jFG6_FagqAZuBZAqwKvK',
+  'x-ig-app-id': '936619743392459',
+  'x-ig-www-claim': '0',
+  'x-requested-with': 'XMLHttpRequest'}
 
 def checkusername(username):
-    payload = f'lsd=AVpbluxH90g&variables=%7B%22username%22%3A%22{username}%22%7D&doc_id=6887760227926196'
-    response = requests.request("POST", url, headers=headers, data=payload)
+    url = f"https://www.instagram.com/api/v1/users/web_profile_info/?username={username}"
+    response = requests.request("POST", url, headers=headers)
     dataresponse = response.json()
 
     return dataresponse
