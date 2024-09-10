@@ -29,10 +29,17 @@ headers = {
 
 def checkusername(username):
     url = f"https://www.instagram.com/api/v1/users/web_profile_info/?username={username}"
-    response = requests.request("GET", url, headers=headers)
-    dataresponse = response.json()
+    for attempt in range(3):  # Retry up to 3 times
+        try:
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()  # Check for HTTP errors
+            dataresponse = response.json()
+            return dataresponse  # Return response if successful
+        except (requests.exceptions.RequestException, ValueError) as e:
+            print(f"Attempt {attempt + 1} failed: {e}")
+            time.sleep(2)  # Wait before retrying
 
-    return dataresponse
+    return {'data': {'user': None}, 'status': 'ok'}  # Return empty if all attempts fail
 
 @st.cache
 def convert_df(df):
