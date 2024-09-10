@@ -2,6 +2,7 @@ import requests
 import streamlit as st
 import pandas as pd
 from io import StringIO
+import time
 
 headers = {
   'accept': '*/*',
