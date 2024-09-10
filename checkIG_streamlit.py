@@ -29,7 +29,7 @@ headers = {
 
 def checkusername(username):
     url = f"https://www.instagram.com/api/v1/users/web_profile_info/?username={username}"
-    response = requests.request("POST", url, headers=headers)
+    response = requests.request("GET", url, headers=headers)
     dataresponse = response.json()
 
     return dataresponse
