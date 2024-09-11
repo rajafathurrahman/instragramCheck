@@ -25,11 +25,6 @@ headers = {
   'sec-fetch-mode': 'cors',
   'sec-fetch-site': 'same-origin',
   'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-  'x-asbd-id': '129477',
-  'x-csrftoken': 'F1jFG6_FagqAZuBZAqwKvK',
-  'x-ig-app-id': '936619743392459',
-  'x-ig-www-claim': '0',
-  'x-requested-with': 'XMLHttpRequest'
 }
 
 def checkdata(html_text):
@@ -58,7 +53,7 @@ def checkusername(username):
                 user_id = checkdata(response.text)
                 return user_id
             else:
-                raise requests.exceptions.RequestException
+                raise ValueError
         except (requests.exceptions.RequestException, ValueError) as e:
             print(f"Attempt {attempt + 1} failed: {e}")
             time.sleep(1)  # Wait before retrying
