@@ -10,7 +10,6 @@ headers = {
   'cache-control': 'no-cache',
   'pragma': 'no-cache',
   'priority': 'u=1, i',
-  'referer': 'https://www.instagram.com/rajarahman17/',
   'sec-ch-prefers-color-scheme': 'light',
   'sec-ch-ua': '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
   'sec-ch-ua-full-version-list': '"Chromium";v="128.0.6613.120", "Not;A=Brand";v="24.0.0.0", "Google Chrome";v="128.0.6613.120"',
