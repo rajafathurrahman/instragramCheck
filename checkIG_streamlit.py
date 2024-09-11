@@ -58,7 +58,7 @@ def checkusername(username):
                 user_id = checkdata(response.text)
                 return user_id
             else:
-                raise 'response not 200'
+                raise requests.exceptions.RequestException
         except (requests.exceptions.RequestException, ValueError) as e:
             print(f"Attempt {attempt + 1} failed: {e}")
             time.sleep(1)  # Wait before retrying
